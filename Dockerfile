@@ -1,4 +1,4 @@
-FROM nginx:1.9.9
+FROM nginx:latest
 
 #Creamos Carpeta dentro del contenedor a la que mapearemos los ficheros ssl
 # generados en la ruta de aws ejemplo: /ect/letsencrypt/live/www.votacao.fbfagostousa.com/
