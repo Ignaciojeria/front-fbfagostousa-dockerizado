@@ -1,17 +1,14 @@
-FROM twalter/openshift-nginx
+FROM nginx:1.9.9
 
-#Copiando el fichero de configuración Custom
-ADD conf.d/default.conf /etc/nginx/conf.d/default.conf
+#Creamos Carpeta dentro del contenedor a la que mapearemos los ficheros ssl
+# generados en la ruta de aws ejemplo: /ect/letsencrypt/live/www.votacao.fbfagostousa.com/
+RUN mkdir /etc/nginx/ssl/
 
-#Copiar dist 1
-COPY /fbfagostousa-frontend/ /usr/share/nginx/html_pt
+COPY /fbfagostousa-frontend/ /usr/share/nginx/html
 
-#copiar dist 2, 3...
+COPY default.conf /etc/nginx/conf.d/
 
-EXPOSE 8081
+CMD ["nginx", "-g", "daemon off;"]
 
-CMD ["nginx","-g","daemon off;"]
-
-###  USO
-# A) $docker build . -t curriculum:latest
-# B) $ docker run -p 80:8081 {idImagen}
+#Ejemplo ejecucion:
+## docker run -p 80:80 -p 443:443 -v /ect/letsencrypt/live/www.votacao.fbfagostousa.com/:/etc/nginx/ssl/ {id_imagen_}
