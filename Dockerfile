@@ -3,9 +3,9 @@ FROM nginx:1.9.9
 #Creamos Carpeta dentro del contenedor a la que mapearemos los ficheros ssl
 # generados en la ruta de aws ejemplo: /ect/letsencrypt/live/www.votacao.fbfagostousa.com/
 
-RUN mkdir /etc/nginx/ssl
-RUN chown -R root:root /etc/nginx/ssl
-RUN chmod -R 600 /etc/nginx/ssl
+RUN mkdir /etc/nginx/ssl/
+RUN chown -R root:root /etc/nginx/ssl/
+RUN chmod -R 600 /etc/nginx/ssl/
 
 COPY /fbfagostousa-frontend/ /usr/share/nginx/html
 
