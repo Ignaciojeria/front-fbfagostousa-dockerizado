@@ -5,7 +5,11 @@ FROM nginx:1.9.9
 
 RUN mkdir /etc/nginx/ssl/
 RUN chown -R root:root /etc/nginx/ssl/
-RUN chmod -R 600 /etc/nginx/ssl/
+RUN chmod -R 700 /etc/nginx/ssl/
+
+COPY fullchain.pem /etc/nginx/ssl/
+
+COPY privkey.pem /etc/nginx/ssl/
 
 COPY /fbfagostousa-frontend/ /usr/share/nginx/html
 
